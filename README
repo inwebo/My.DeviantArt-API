@@ -11,3 +11,7 @@ J'ai lu la charte d'utilisation et cette class n'as pas l'air de rentrer en conf
 Par contre vous DEVEZ utiliser cette class uniquement avec VOTRE COMPTE deviantart, je n'ai pas écrit cette API dans l'idée de piller le travail des autres. VOUS êtes responsable de ce que vous faites !
 
 Protips, mettez en CACHE tout ce que vous allez récupèrer, les images et les pages HTML. Deviantart se réserve le droit de BANNIR des IP si ils considèrent (à tort ou à raison) qu'il y a une utilisation frauduleuse du service.
+
+Une documentation est en cours de rédaction. patience
+
+Pour les curieux l'API est disponible sous forme d'archive phar (voir make.php).

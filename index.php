@@ -2,29 +2,27 @@
 <?php ini_set('display_errors', TRUE ); ?>
 <?php
 
-            $deviantid  = 'inwebo';
-            $galleryUrl = 'http://inwebo.deviantart.com/gallery/12613778';
+    $deviantid = 'inwebo';
+    $galleryUrl = 'http://inwebo.deviantart.com/gallery/12613778';
 
-            try {
-                /*$DOMProfil = new DOMDeviantProfil( $deviantid );
-                $parser     = new DeviantParser( $DOMProfil );
-                $version    = new DeviantVersion( $DOMProfil );
-                $profil     = new DeviantProfil( $DOMProfil );
-                $stats      = new DeviantStats( $DOMProfil );
-                $featured   = new DeviantFeatured( $DOMProfil );
-                $newest     = new DeviantNewest( $DOMProfil );
-                $favorites  = new DeviantFavorites( $DOMProfil );*/
+    try {
+        $DOMProfil    = new DOMDeviantProfil($deviantid);
+        $parser       = new DeviantParser($DOMProfil);
+        $version      = new DeviantVersion($DOMProfil);
+        $profil       = new DeviantProfil($DOMProfil);
+        $stats        = new DeviantStats($DOMProfil);
+        $featured     = new DeviantFeatured($DOMProfil);
+        $newest       = new DeviantNewest($DOMProfil);
+        $favorites    = new DeviantFavorites($DOMProfil);
 
-                /*$DOMGalleriesList  = new DOMDeviantGalleryList( $deviantid );
-                $galleriesList     = new DeviantGalleriesList( $DOMGalleriesList );*/
+        $DOMGalleriesList = new DOMDeviantGalleryList($deviantid);
+        $galleriesList    = new DeviantGalleriesList($DOMGalleriesList);
 
-                $DOMGallery        = new DOMDeviantGallery(  $deviantid  );
-                $oneGallery        = new DeviantGallery(  $DOMGallery );
-
-            }
-            catch( Exception $e ) {
-                echo $e->getMessage();
-            }
+        $DOMGallery       = new DOMDeviantGallery($deviantid);
+        $oneGallery       = new DeviantGallery($DOMGallery);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 
 ?>
 
@@ -82,7 +80,7 @@
       </code>
       <h2>Favorites</h2>
       <p>
-          <?php echo $favorites->newestNodeList->length; ?> Favorites
+          <?php echo $favorites->favoritesNodeList->length; ?> Favorites
       </p>
       <code>
           <pre>
@@ -104,10 +102,10 @@
       </p>
       <code>
           <pre>
-            <?php //var_dump($oneGallery); ?>
+            <?php var_dump($oneGallery); ?>
           </pre>
       </code>
-      <h2>Affichage</h2>
+      <h2>Affichage d'une gallerie</h2>
       <?php
         $gallerie = new DisplayGallery( $oneGallery->deviationsSplObjectStorage );
         $gallerie->gallerie();
