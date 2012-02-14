@@ -31,49 +31,27 @@
  */
 
 /**
- * Utilisateur depuis 5 ans maintenant du site http://www.deviantart.com/ ( que
- * je vous conseil au passage ), je fais un constat trés amer : Mais bordel OU
- * se trouve votre API ? Vos flux rss et tout ce qui fait un site moderne ? Co-
- * -mment maintenir mon portfolio synchronisé avec mon compte deviantart sans y
- * passer 1H ? C'est vraiment trop ? FlickR dispose lui depuis quelques temps 
- * maintenant de son API, faut en prendre de la graine les copains.
+ * Get all galleries available from account.
  *
- * Alors voilà une class PHP5 utilisant l'extension DOM pour parser votre compte
- *  deviant art et renvoyer toutes les infos nécessaires (avatar, id, gallerie).
- * Rien de bien compliqué mais cela rends bien des services à tous nos amis pro-
- * crastinateurs.
- *
- * Fonctionnement trés simple, je considère qu'une page retourné par deviantart
- *  est un arbre DOM, qu'il suffira de parser avec des requêtes Xpath pour en
- * extraire les informations que l'on souhaite.
- *
- * ! Mise en garde !
- * J'ai lu la charte d'utilisation et cette class n'as pas l'air de rentrer en
- * conflit avec, donc si des anglophones (avertis) pouvaient me confirmer.
- *
- * Par contre vous DEVEZ utiliser cette class uniquement avec VOTRE COMPTE
- * deviantart, je n'ai pas écrit cette API dans l'idée de piller le travail des
- * autres. VOUS êtes responsable de ce que vous faites !
- *
- * Protips, mettez en CACHE tout ce que vous allez récupèrer, les
- * images et les pages HTML. Deviantart se réserve le droit de BANNIR des IP si
- * ils considèrent (à tort ou à raison) qu'il y a une utilisation frauduleuse du
- *  service.
- *
- * 
  * @category  My.Deviant API
  * @package   Base
  * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
  * @author    Julien Hannotin
  * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
  * @version   $Id:$
- * @link      https://github.com/inwebo/My.MVC
- * @since     File available since Beta 28-11-2011
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
  *
  */
 
 class DOMDeviantGalleryList extends DOMDeviant{
 
+    /**
+     * Galleries from $profilId
+     *
+     * @param string $profilId
+     * @return void
+     */
     public function __construct( $profilId ) {
         parent::__construct( $profilId );
 

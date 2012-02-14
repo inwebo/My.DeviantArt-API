@@ -31,23 +31,89 @@
  */
 
 /**
- * Description of class
+ * Query a DOMDocument searching for user profil.
  *
- * @author inwebo
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ *
  */
 class DeviantProfil extends DeviantParser {
 
+    /**
+     * All nodes from about me page section
+     * 
+     * @var DOMNodeList
+     */
     public $aboutMeNodeList;
+
+    /**
+     * All nodes from user badge page section
+     *
+     * @var DOMNodeList
+     */
     public $userBadgeMeNodeList;
+
+    /**
+     * All nodes from avatar page section
+     *
+     * @var DOMNodeList
+     */
     public $avatarNodeList;
 
+    /**
+     * Account type, member, premium etc
+     *
+     * @var string
+     */
     public $type;
+
+    /**
+     * Username's prefix ie members have a ~
+     *
+     * @var string
+     */
     public $prefix;
+
+    /**
+     * User's country
+     *
+     * @var string
+     */
     public $country;
+
+    /**
+     * User's deviantId
+     *
+     * @var string
+     */
     public $deviantId;
+
+    /**
+     * Next line from your Username
+     *
+     * @var string
+     */
     public $tagLine;
+
+    /**
+     * Avatar source image
+     *
+     * @var string
+     */
     public $avatarSrc;
 
+    /**
+     * Init profil from queries
+     *
+     * @param DOMDocument $doc
+     * @return void
+     */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
         
@@ -67,7 +133,13 @@ class DeviantProfil extends DeviantParser {
 
     }
 
-    // http://blog.studiovitamine.com/actualite,107,fr/php-supprimer-les-espaces-inutiles-d-une-chaine-de-caracteres,304,fr.html?id=141
+    /**
+     * Clean up a string
+     *
+     * @param string $string
+     * @return string
+     * @see http://blog.studiovitamine.com/actualite,107,fr/php-supprimer-les-espaces-inutiles-d-une-chaine-de-caracteres,304,fr.html?id=141
+     */
     public function sTrim( $string ) {
 	$string = trim($string);
 	$string = preg_replace("( +)", " ", $string);

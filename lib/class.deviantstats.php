@@ -31,14 +31,21 @@
  */
 
 /**
- * Description of class
+ * Query a DOMDocument searching for user stats.
  *
- * @author inwebo
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ *
  */
 class DeviantStats extends DeviantParser {
 
     public $statsNodeList;
-
     public $deviations;
     public $comments;
     public $pageviews;

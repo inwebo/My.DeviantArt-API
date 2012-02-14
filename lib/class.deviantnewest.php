@@ -31,15 +31,40 @@
  */
 
 /**
- * Description of class
+ * Query a DOMDocument searching for all newest deviations.
  *
- * @author inwebo
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ *
  */
 class DeviantNewest extends DeviantParser {
 
+    /**
+     * Querying result
+     *
+     * @var DOMNodeList
+     */
     public $newestNodeList;
+
+    /**
+     * All found deviations from favorites as object put in SplObjectStorage
+     *
+     * @var SplObjectStorage
+     */
     public $newestDeviationsSplObjectStorage;
 
+    /**
+     * Query DOMDocument searching for deviations.
+     *
+     * @param DOMDocument $doc
+     * @return void
+     */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
         $this->newestNodeList                   = $this->query("//div[@class='gr-box gr-genericbox  gr-newest']/div[@class='gr-body']/div/div/div/span/span/a");

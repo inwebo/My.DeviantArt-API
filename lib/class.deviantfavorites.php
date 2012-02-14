@@ -29,19 +29,44 @@
  * cette page web.
  *
  */
-
 /**
- * Description of class
+ * Query a DOMDocument searching for all favorites
  *
- * @author inwebo
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ *
  */
-class DeviantFavorites extends DeviantParser {
 
+class DeviantFavorites extends DeviantParser {
+    
+    /**
+     * Querying result
+     *
+     * @var DOMNodeList
+     */
     public $favoritesNodeList;
+    
+    /**
+     * All found deviations from favorites as object put in SplObjectStorage
+     *
+     * @var SplObjectStorage
+     */
     public $favoritesDeviationsSplObjectStorage;
 
+    /**
+     * Query DOMDocument searching for deviations.
+     *
+     * @param DOMDocument $doc
+     * @return void
+     */
     public function  __construct(DOMDocument $doc) {
-        parent::__construct($doc);
+        parent::__construct( $doc );
         $this->favoritesNodeList                   = $this->query("//div[@class='gr-box gr-genericbox  gr-faves']/div[@class='gr-body']/div/div/div/span/span/a");
         $this->favoritesDeviationsSplObjectStorage = $this->iterate( $this->favoritesNodeList, 'DeviantParser::factoryDeviation' ) ;
     }

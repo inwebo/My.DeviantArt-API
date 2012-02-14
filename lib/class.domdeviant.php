@@ -31,8 +31,7 @@
  */
 
 /**
- * 
- *
+ * Grab html code from a webpage as string.
  * 
  * @category  My.Deviant API
  * @package   Base
@@ -40,28 +39,61 @@
  * @author    Julien Hannotin
  * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
  * @version   $Id:$
- * @link      https://github.com/inwebo/My.MVC
- * @since     File available since Beta 28-11-2011
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
  *
  */
 
-class DOMDeviant extends DOMDocument{
+abstract class DOMDeviant extends DOMDocument{
 
-    public $version;
+    /**
+     * Deviant's profil id, mine is inwebo
+     * 
+     * @var string
+     */
     public $profilId;
-    public $profilUrl;
-    public $galleryUrl;
-    public $html;
-    public $dom;
 
+    /**
+     * Deviant's profil url, mine is http://inwebo.deviantart.com/
+     *
+     * @var string
+     */
+    public $profilUrl;
+
+    /**
+     * Deviant's gallery default url, mine is http://inwebo.deviantart.com/gallery/
+     *
+     * @var string
+     */
+    public $galleryUrl;
+
+    /**
+     * Webpage's html code.
+     *
+     * @var string
+     */
+    public $html;
+
+
+    /**
+     * Construct essentials class attributes
+     *
+     * @param string $profilId
+     */
     public function __construct( $profilId ) {
         parent::__construct();
         $this->profilId   = $profilId;
         $this->profilUrl  = 'http://' . $this->profilId . '.deviantart.com/';
-        $this->galleryUrl  = $this->profilUrl . 'gallery/';
-
+        $this->galleryUrl = $this->profilUrl . 'gallery/';
     }
 
+    /**
+     * Get html from $url.
+     *
+     * @param string $url
+     * @return bool
+     * @throws exception if $url doesn't exists
+     */
     public function getHTML( $url ) {
             if( ( $this->html = @file_get_contents( $url ) ) !== FALSE ) {
                 return true;

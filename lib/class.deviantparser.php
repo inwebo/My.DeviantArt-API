@@ -30,35 +30,38 @@
  *
  */
 
- /**
-  * Root class for querying our HTML.
-  *
-  * Every querying class should extend it.
-  *
-  *
-  * @category  DeviantArt
-  * @package   Base
-  * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
-  * @author    Julien Hannotin
-  * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-  * @version   $Id:$
-  * @link      https://github.com/inwebo/My.DeviantArtParser
-  * @since     File available since 14-02-2012
-  */
-
+/**
+ * Query a DOMDocument searching for all newest deviations.
+ *
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ *
+ */
 
 class DeviantParser extends DOMXPath {
     
-   /**
-    * 
-    *
-    * @param  array $_args cf var $args
-    * @return array $params
-    */
+    /**
+     * Init Xpath
+     *
+     * @param DOMDocument $doc
+     * @return void
+     */
     public function  __construct( DOMDocument $doc ) {
         parent::__construct( $doc );
     }
 
+    /**
+     * Interate a DOMNodeList and for each node call a callback function
+     *
+     * @param DOMDocument $doc
+     * @return SplObjectStorage
+     */
     public function iterate( DOMNodeList $nodelist, $callback ) {
         $SplObjectStorage = new SplObjectStorage();
         foreach( $nodelist as $item ) {
@@ -67,7 +70,13 @@ class DeviantParser extends DOMXPath {
         return $SplObjectStorage;
     }
 
-    /* @todo : rename method */
+    /**
+     * Set default nodeValue to NULL if item doesn't have got a nodeValue
+     *
+     * @param DOMNodeList $nodeList to iterate
+     * @param int $index
+     * @return string if nodeValue is set else NULL
+     */
     public function setDefault( DOMNodeList $nodeList, $index ) {
         if( @($nodeList->item($index)) ) {
             return $nodeList->item($index)->nodeValue;
@@ -77,10 +86,22 @@ class DeviantParser extends DOMXPath {
         }
     }
 
+    /**
+     * Make deviation object from a DOMNode
+     *
+     * @param DOMNode $node a deviation't DOMNode
+     * @return object Daviation
+     */
     public static function factoryDeviation( DOMNode $node ) {
         return new Deviation( $node );
     }
-    
+
+    /**
+     * Make gallery object from a DOMNode
+     *
+     * @param DOMNode $node a deviation't DOMNode
+     * @return object $gallerie
+     */
     public static function factoryGallery( DOMNode $node ) {
         $gallerie       = new stdClass();
         $gallerie->url  = $node->attributes->getNamedItem("href")->nodeValue;
