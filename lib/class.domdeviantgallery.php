@@ -74,13 +74,26 @@
 
 class DOMDeviantGallery extends DOMDeviant{
 
-    public function __construct( $profilId ) {
+    public $url;
+    
+    public function __construct( $profilId, $categoryUrl = NULL ) {
         parent::__construct( $profilId );
 
-        if( $this->getHTML( $this->galleryUrl ) ) {
-            @$this->loadHTML( $this->html );            
+        if( $categoryUrl !== NULL ) {
+            if( $this->getHTML( $wichOne ) ) {
+                @$this->loadHTML( $this->html );
+                $this->url = $wichOne;
+            }
+        }
+        else {
+            if( $this->getHTML( $this->galleryUrl ) ) {
+                @$this->loadHTML( $this->html );
+                $this->url = $this->galleryUrl;
+            }
         }
 
     }
+
+
 
 }

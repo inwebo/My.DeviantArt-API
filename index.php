@@ -1,35 +1,33 @@
 <?php 	include 'autoload.php'; ?>
-<?php 	include 'lib/const.define.php'; ?>
 <?php ini_set('display_errors', TRUE ); ?>
-        <?php
+<?php
 
-            $deviantid = 'inwebo';
+            $deviantid  = 'inwebo';
+            $galleryUrl = 'http://inwebo.deviantart.com/gallery/12613778';
 
             try {
-                $DOMDeviant = new DOMDeviantProfil( $deviantid );
-                $parser     = new DeviantParser( $DOMDeviant );
-                $version    = new DeviantVersion( $DOMDeviant );
-                $profil     = new DeviantProfil( $DOMDeviant );
-                $stats      = new DeviantStats( $DOMDeviant );
-                $featured   = new DeviantFeatured( $DOMDeviant );
-                $newest     = new DeviantNewest( $DOMDeviant );
-                $favorites  = new DeviantFavorites( $DOMDeviant );
+                /*$DOMProfil = new DOMDeviantProfil( $deviantid );
+                $parser     = new DeviantParser( $DOMProfil );
+                $version    = new DeviantVersion( $DOMProfil );
+                $profil     = new DeviantProfil( $DOMProfil );
+                $stats      = new DeviantStats( $DOMProfil );
+                $featured   = new DeviantFeatured( $DOMProfil );
+                $newest     = new DeviantNewest( $DOMProfil );
+                $favorites  = new DeviantFavorites( $DOMProfil );*/
 
-                $DOMGalleries = new DOMDeviantGallery( $deviantid );
-                $galleries    = new DeviantGalleries( $DOMGalleries );
+                /*$DOMGalleriesList  = new DOMDeviantGalleryList( $deviantid );
+                $galleriesList     = new DeviantGalleriesList( $DOMGalleriesList );*/
 
-                
+                $DOMGallery        = new DOMDeviantGallery(  $deviantid  );
+                $oneGallery        = new DeviantGallery(  $DOMGallery );
 
             }
             catch( Exception $e ) {
                 echo $e->getMessage();
             }
 
-        ?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
+?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -93,12 +91,26 @@ and open the template in the editor.
       </code>
       <h2>Galleries list</h2>
       <p>
-          <?php echo $galleries->galleriesNodeList->length; ?> Favorites
+          <?php echo $galleriesList->galleriesNodeList->length; ?> Galleries
       </p>
       <code>
           <pre>
-            <?php var_dump($galleries); ?>
+            <?php var_dump($galleriesList); ?>
           </pre>
       </code>
+      <h2>One gallerie</h2>
+      <p>
+          <?php echo $oneGallery->pages; ?> pages
+      </p>
+      <code>
+          <pre>
+            <?php //var_dump($oneGallery); ?>
+          </pre>
+      </code>
+      <h2>Affichage</h2>
+      <?php
+        $gallerie = new DisplayGallery( $oneGallery->deviationsSplObjectStorage );
+        $gallerie->gallerie();
+      ?>
   </body>
 </html>

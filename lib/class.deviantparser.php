@@ -33,21 +33,28 @@
  /**
   * Root class for querying our HTML.
   *
-  * Description longue de la classe, s'il y en a une
+  * Every querying class should extend it.
   *
-  * @category  My.Framworks
+  *
+  * @category  DeviantArt
   * @package   Base
   * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
   * @author    Julien Hannotin
   * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
   * @version   $Id:$
-  * @link      https://github.com/inwebo/My.MVC
-  * @since     File available since Beta 28-11-2011
+  * @link      https://github.com/inwebo/My.DeviantArtParser
+  * @since     File available since 14-02-2012
   */
 
 
 class DeviantParser extends DOMXPath {
-
+    
+   /**
+    * 
+    *
+    * @param  array $_args cf var $args
+    * @return array $params
+    */
     public function  __construct( DOMDocument $doc ) {
         parent::__construct( $doc );
     }

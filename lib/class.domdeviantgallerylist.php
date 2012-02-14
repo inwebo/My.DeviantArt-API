@@ -72,30 +72,15 @@
  *
  */
 
-class DOMDeviant extends DOMDocument{
-
-    public $version;
-    public $profilId;
-    public $profilUrl;
-    public $galleryUrl;
-    public $html;
-    public $dom;
+class DOMDeviantGalleryList extends DOMDeviant{
 
     public function __construct( $profilId ) {
-        parent::__construct();
-        $this->profilId   = $profilId;
-        $this->profilUrl  = 'http://' . $this->profilId . '.deviantart.com/';
-        $this->galleryUrl  = $this->profilUrl . 'gallery/';
+        parent::__construct( $profilId );
+
+        if( $this->getHTML( $this->galleryUrl ) ) {
+            @$this->loadHTML( $this->html );            
+        }
 
     }
 
-    public function getHTML( $url ) {
-            if( ( $this->html = @file_get_contents( $url ) ) !== FALSE ) {
-                return true;
-            }
-            else {
-                throw new Exception('<strong>' . $this->profilId . '</strong>\'s page doesn\'t exists @ : ' . $url );
-            }
-    }
-    
 }
