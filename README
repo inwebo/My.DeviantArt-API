@@ -19,3 +19,5 @@ Par contre vous DEVEZ utiliser cette class uniquement avec VOTRE COMPTE devianta
 Protips, mettez en CACHE tout ce que vous allez récupèrer, les images et les pages HTML. Deviantart se réserve le droit de BANNIR des IP si ils considèrent (à tort ou à raison) qu'il y a une utilisation frauduleuse du service.
 
 Pour les curieux l'API est disponible sous forme d'archive phar (voir make.php).
+
+Il reste pas mal de chose à implémenter car je n'ai pas de compte prémium et je ne peux accéder à toutes les sections du site.

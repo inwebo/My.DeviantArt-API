@@ -1,9 +1,17 @@
-<?php 	include 'autoload.php'; ?>
+<?php include 'autoload.php'; ?>
 <?php ini_set('display_errors', TRUE ); ?>
 <?php
 
-    $deviantid = 'inwebo';
-    $galleryUrl = 'http://inwebo.deviantart.com/gallery/12613778';
+    (!isset($_POST['deviantId'])) ? $_POST['deviantId']= 'inwebo' : NULL ;
+
+
+    if( $_POST['deviantId'] !== NULL || $_POST['deviantId'] !== '' ) {
+        $deviantid = $_POST['deviantId'];
+    }
+    else {
+        $deviantid = 'inwebo';
+        $galleryUrl = 'http://inwebo.deviantart.com/gallery/12613778';
+    }
 
     try {
         $DOMProfil    = new DOMDeviantProfil($deviantid);
@@ -23,7 +31,6 @@
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -36,12 +43,18 @@
   <body>
       <h1>Deviant API</h1>
       <p>
-          API de récupération d'images de deviantart.
+          API de récupération d'images de deviantart voir <a href="README">readme</a>.
       </p>
       <h2>Version deviant art</h2>
       <p>
         Compatible <?php echo $version->deviantVersion; ?>
       </p>
+      <form name="deviantIdForm" method="post">
+          <label>Deviant id : <input type="text" value="" name="deviantId"> (mine is inwebo)</label>
+          <input type="submit">
+      </form>
+
+
       <h2><img src="<?php echo $profil->avatarSrc; ?>"><?php echo $profil->prefix ?><?php echo $profil->deviantId ?> 's DeviantProfil from <?php echo $profil->country; ?></h2>
       <h2>Stats</h2>
       <ul>
@@ -82,6 +95,14 @@
         $gallerieList->galleriesList();
       ?>
       </ul>
+      <h3>As array</h3>
+      <pre>
+      <code>
+          <?php
+            var_dump( $galleriesList->toArray($galleriesList->galleriesSplObjectStorage) );
+          ?>
+      </code>
+      </pre>
       <h2>Une gallerie (<?php echo $oneGallery->pages; ?> pages)</h2>
       <?php
         $gallerie = new DisplayGallery( $oneGallery->deviationsSplObjectStorage );

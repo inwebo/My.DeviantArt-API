@@ -49,7 +49,7 @@ class DisplayGalleriesList extends Display {
     }
 
     /**
-     * Graphical representation of a deviantart's gallery
+     * Call graphical representation of a deviantart's gallery
      *
      * @param void
      * @return void
@@ -58,6 +58,12 @@ class DisplayGalleriesList extends Display {
         Display::fetchObject( 'DisplayGalleriesList::oneGallery' );
     }
 
+    /**
+     * Graphical representation of a deviantart's galleries list
+     *
+     * @param void
+     * @return void
+     */
     public function oneGallery( $object ) {
         $buffer = '<li><a href="' . $object->url . '">' . $object->name . '</a></li>';
         echo $buffer;

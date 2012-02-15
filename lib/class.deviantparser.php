@@ -110,4 +110,21 @@ class DeviantParser extends DOMXPath {
         return $gallerie;
     }
 
+    /**
+     * Convert a SplObjectStorage to array
+     *
+     * @param SplObjectStorage $collection 
+     * @return array $buffer
+     * @see http://php.net/manual/fr/function.get-object-vars.php
+     */
+    public static function toArray( SplObjectStorage $collection ) {
+        $buffer = array();
+        $collection->rewind();
+        while( $collection->valid() ) {
+            $buffer[] = get_object_vars( $collection->current() );
+            $collection->next();
+        }
+        return $buffer;
+    }
+
 }
