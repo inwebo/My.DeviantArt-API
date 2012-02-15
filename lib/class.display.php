@@ -31,18 +31,43 @@
  */
 
 /**
- * Description of class
+ * Display a SplObjectStorage collection ( eg from a deviantnewest object )
  *
- * @author inwebo
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
  */
+
 class Display {
 
+    /**
+     * A collection of deviation object
+     * @var SplObjectStorage
+     */
     public $collection;
 
+    /**
+     * Construct object
+     *
+     * @param SplObjectStorage $collection
+     * @return void
+     */
     public function  __construct( SplObjectStorage $collection ) {
         $this->collection = $collection;
     }
 
+    /**
+     * Iterate through SplObjectStorage object, and apply a callback function
+     * $callBack on each item.
+     *
+     * @param string $callBack
+     * @return void
+     */
     public function fetchObject( $callBack ) {
         $this->collection->rewind();
         while( $this->collection->valid() ) {
@@ -51,6 +76,12 @@ class Display {
         }
     }
 
+    /**
+     * Graphical representation of one deviation
+     *
+     * @param string $callBack
+     * @todo Differents size of deviation
+     */
     public function deviation( $object ) {
         $buffer = '<img src="'. $object->deviationSmallSrc .'">';
         echo $buffer;

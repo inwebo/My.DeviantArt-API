@@ -31,18 +31,29 @@
  */
 
 /**
- * Description of class
+ * Display a SplObjectStorage collection ( eg from a deviantnewest object )
  *
- * @author inwebo
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
  */
 class DisplayGallery extends Display {
-
-    public $collection;
 
     public function  __construct( SplObjectStorage $collection ) {
         $this->collection = $collection;
     }
 
+    /**
+     * Graphical representation of a deviantart's gallery
+     *
+     * @param void
+     * @return void
+     */
     public function gallerie() {
         Display::fetchObject( 'Display::deviation' );
     }

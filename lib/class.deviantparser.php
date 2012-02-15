@@ -57,7 +57,7 @@ class DeviantParser extends DOMXPath {
     }
 
     /**
-     * Interate a DOMNodeList and for each node call a callback function
+     * Iterate a DOMNodeList and for each node call a callback function
      *
      * @param DOMDocument $doc
      * @return SplObjectStorage
@@ -100,7 +100,7 @@ class DeviantParser extends DOMXPath {
      * Make gallery object from a DOMNode
      *
      * @param DOMNode $node a deviation't DOMNode
-     * @return object $gallerie
+     * @return object stdClass $gallerie
      */
     public static function factoryGallery( DOMNode $node ) {
         $gallerie       = new stdClass();

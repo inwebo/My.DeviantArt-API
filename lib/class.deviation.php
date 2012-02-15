@@ -30,27 +30,94 @@
  *
  */
 
-
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- * @todo : Harvest category to. eg : webdesign > bla > bla and put them in array
+/**
+ * Object representation of one pictures deviation.
+ *
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ * @todo      Harvest category to. eg : webdesign > bla > bla and put them in array
  */
 
 class Deviation extends DeviantParser{
 
+    /**
+     * Deviation's title
+     * @var string
+     */
     public $title;
+
+    /**
+     * Deviation's original url
+     * @var string
+     */
     public $deviantUrl;
+
+    /**
+     * Deviation's small img src
+     * @var string
+     */
     public $deviationSmallSrc;
+
+    /**
+     * Deviation's small img width
+     * @var string
+     */
     public $deviationSmallWidth;
+
+    /**
+     * Deviation's small img height
+     * @var string
+     */
     public $deviationSmallHeight;
+
+    /**
+     * Deviation's medium img src
+     * @var string
+     */
     public $deviationMediumSrc;
+
+    /**
+     * Deviation's medium img width
+     * @var string
+     */
     public $deviationMediumWidth;
+
+    /**
+     * Deviation's medium img height
+     * @var string
+     */
     public $deviationMediumHeight;
+
+    /**
+     * Deviation's full img src
+     * @var string
+     */
     public $deviationFullSrc;
+
+    /**
+     * Deviation's full img width
+     * @var string
+     */
     public $deviationFullWidth;
+
+    /**
+     * Deviation's full img height
+     * @var string
+     */
     public $deviationFullHeight;
 
+    /**
+     * Collect all deviation's attributes from a DOMNode
+     *
+     * @param DOMNode $node
+     * @return void
+     */
     public function  __construct( DOMNode $node ) {
 
         $this->title                 = $node->attributes->getNamedItem("title")->nodeValue;
@@ -67,6 +134,13 @@ class Deviation extends DeviantParser{
  
     }
 
+    /**
+     * If a deviation doesn't have got medium src, or large src set them to null
+     *
+     * @param DOMNode $node
+     * @param string $attributeName attribute's value searching for.
+     * @return void
+     */
     public static function attributeDefault( DOMNode $node, $attributeName ) {
         if( @$node->attributes->getNamedItem( $attributeName )->nodeValue ) {
             return $node->attributes->getNamedItem( $attributeName )->nodeValue;
@@ -74,9 +148,6 @@ class Deviation extends DeviantParser{
         else {
             return NULL;
         }
-    }
-
-    public function  __toString() {
     }
 
 }

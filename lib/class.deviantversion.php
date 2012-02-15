@@ -30,15 +30,35 @@
  *
  */
 
+/**
+ * Query a DOMDocument searching for user stats.
+ *
+ * @category  My.Deviant API
+ * @package   Base
+ * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
+ * @author    Julien Hannotin
+ * @license   http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
+ * @version   $Id:$
+ * @link      https://github.com/inwebo/My.DeviantArtParser
+ * @since     File available since Beta 01-02-2012
+ *
+ */
 class DeviantVersion extends DeviantParser {
-
+    /**
+     * Current deviantArt version
+     * @var string
+     */
     public $deviantVersion;
 
+    /**
+     * Query DOMDocument searching for current version.
+     *
+     * @param DOMDocument $doc
+     * @return void
+     */
     public function  __construct(DOMDocument $doc) {
         parent::__construct( $doc );
         $this->deviantVersion = $this->query("//body[@id='deviantART-v7']")->item(0)->attributes->getNamedItem("id")->nodeValue;
     }
 
 }
-
-?>

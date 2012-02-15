@@ -45,16 +45,67 @@
  */
 class DeviantStats extends DeviantParser {
 
+    /**
+     * Nodes from stats section
+     *
+     * @var DOMNodeList
+     */
     public $statsNodeList;
+
+    /**
+     * Total user's deviations
+     * @var string
+     */
     public $deviations;
+
+    /**
+     * Total user's comments
+     * @var string
+     */
     public $comments;
+
+    /**
+     * User's account pageview
+     * @var string
+     */
     public $pageviews;
+
+    /**
+     * Total user's scraps
+     * @var string
+     */
     public $scraps;
+
+    /**
+     * Users account watchers
+     * @var string
+     */
     public $watchers;
+
+    /**
+     * Total user's critiques
+     * @var string
+     */
     public $critiques;
-    public $forum_posts;
+
+    /**
+     * Total user's forum posts
+     * @var string
+     */
+    public $forumPosts;
+
+    /**
+     * Total user's favourites
+     * @var string
+     */
     public $favourites;
 
+    /**
+     * Query DOMDocument searching for stats.
+     *
+     * @param DOMDocument $doc
+     * @return void
+     */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
 
@@ -66,7 +117,7 @@ class DeviantStats extends DeviantParser {
         $this->scraps        = $this->statsNodeList->item(3)->nodeValue;
         $this->watchers      = $this->statsNodeList->item(4)->nodeValue;
         $this->critiques     = $this->statsNodeList->item(5)->nodeValue;
-        $this->forum_posts   = $this->statsNodeList->item(6)->nodeValue;
+        $this->forumPosts    = $this->statsNodeList->item(6)->nodeValue;
         $this->favourites    = $this->statsNodeList->item(7)->nodeValue;
 
     }
