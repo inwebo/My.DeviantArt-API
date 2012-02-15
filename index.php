@@ -29,26 +29,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title></title>
+    <title>Deviant art API</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
   </head>
   <body>
-      <h1>Deviant parser</h1>
+      <h1>Deviant API</h1>
       <p>
           API de récupération d'images de deviantart.
       </p>
       <h2>Version deviant art</h2>
       <p>
-        <?php echo $version->deviantVersion; ?>
+        Compatible <?php echo $version->deviantVersion; ?>
       </p>
-      <h2>DeviantProfil</h2>
-      <img src="<?php echo $profil->avatarSrc; ?>">
-      <code>
-          <pre>
-            <?php var_dump($profil); ?>
-          </pre>
-      </code>
+      <h2><img src="<?php echo $profil->avatarSrc; ?>"><?php echo $profil->prefix ?><?php echo $profil->deviantId ?> 's DeviantProfil from <?php echo $profil->country; ?></h2>
       <h2>Stats</h2>
       <ul>
           <li><?php echo $stats->deviations ; ?> <em>Deviations</em></li>
@@ -57,58 +51,45 @@
           <li><?php echo $stats->scraps ; ?> <em>Scraps</em></li>
           <li><?php echo $stats->watchers ; ?> <em>Watchers</em></li>
           <li><?php echo $stats->critiques ; ?> <em>Critiques</em></li>
-          <li><?php echo $stats->forum_posts ; ?> <em>Forum_posts</em></li>
+          <li><?php echo $stats->forumPosts ; ?> <em>Forum posts</em></li>
           <li><?php echo $stats->favourites ; ?> <em>Favourites</em></li>
       </ul>
-      <h2>Featured</h2>
+      <h2>Featured (<?php echo $featured->featuredNodeList->length; ?>)</h2>
       <p>
-          <?php echo $featured->featuredNodeList->length; ?> featured
+      <?php
+        $gallerie = new DisplayGallery( $featured->featuredDeviationsSplObjectStorage );
+        $gallerie->gallerie();
+      ?>
       </p>
-      <code>
-          <pre>
-            <?php var_dump($featured); ?>
-          </pre>
-      </code>
-      <h2>Newest</h2>
+      <h2>Newest (<?php echo $newest->newestNodeList->length; ?>)</h2>
       <p>
-          <?php echo $newest->newestNodeList->length; ?> Newest
+      <?php
+        $gallerie = new DisplayGallery( $newest->newestDeviationsSplObjectStorage );
+        $gallerie->gallerie();
+      ?>
       </p>
-      <code>
-          <pre>
-            <?php var_dump($newest); ?>
-          </pre>
-      </code>
-      <h2>Favorites</h2>
+      <h2>Favorites (<?php echo $favorites->favoritesNodeList->length; ?>)</h2>
       <p>
-          <?php echo $favorites->favoritesNodeList->length; ?> Favorites
+      <?php
+        $gallerie = new DisplayGallery( $favorites->favoritesDeviationsSplObjectStorage );
+        $gallerie->gallerie();
+      ?>
       </p>
-      <code>
-          <pre>
-            <?php var_dump($favorites); ?>
-          </pre>
-      </code>
-      <h2>Galleries list</h2>
-      <p>
-          <?php echo $galleriesList->galleriesNodeList->length; ?> Galleries
-      </p>
-      <code>
-          <pre>
-            <?php var_dump($galleriesList); ?>
-          </pre>
-      </code>
-      <h2>One gallerie</h2>
-      <p>
-          <?php echo $oneGallery->pages; ?> pages
-      </p>
-      <code>
-          <pre>
-            <?php var_dump($oneGallery); ?>
-          </pre>
-      </code>
-      <h2>Affichage d'une gallerie</h2>
+      <h2>Galleries list (<?php echo $galleriesList->galleriesNodeList->length; ?>)</h2>
+      <ul>
+      <?php
+        $gallerieList = new DisplayGalleriesList( $galleriesList->galleriesSplObjectStorage );
+        $gallerieList->galleriesList();
+      ?>
+      </ul>
+      <h2>Une gallerie (<?php echo $oneGallery->pages; ?> pages)</h2>
       <?php
         $gallerie = new DisplayGallery( $oneGallery->deviationsSplObjectStorage );
         $gallerie->gallerie();
       ?>
+      <h2>Creation archive PHAR</h2>
+      <p>
+          <a href="make.php">make</a>
+      </p>
   </body>
 </html>
