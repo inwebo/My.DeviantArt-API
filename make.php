@@ -1,16 +1,9 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-$classes = glob('lib/*.php');
 
 try {
-    $phar = new Phar('deviant-api.phar.php');
-
-    foreach( $classes as $class ) {
-        $phar->addFile( $class );
-    }
+    $phar = new Phar( __DIR__ . '/phar/deviant-api.phar' );
+    $phar->buildFromDirectory(__DIR__ . '/lib', '/\.php$/');
+    $phar->stopBuffering();
 }
 catch(Exception $e) {
     echo $e->getMessage();
@@ -18,7 +11,25 @@ catch(Exception $e) {
 
 
 ?>
-<h1>Creation de l'archive ok !</h1>
-<p>
-    elle se trouve à la racine du dossier courant et se nomme deviant-api.phar.php.
-</p>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Deviant art API</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <h1>Création de l'archive ok !</h1>
+    <p>
+        Elle se trouve à la racine du dossier courant et se nomme deviant-api.phar.php
+    </p>
+    <p>
+        Fonctionnement trés simple, plutôt que d'inclure n fichiers, d'avoir un recours à un
+        autoload, il suffit d'inclure l'archive phar !
+    </p>
+    <code>
+        include ('phar/deviant-api.phar');
+        // Toutes les classes sont dorénavant disponible.
+    </code>
+  </body>
+</html>
