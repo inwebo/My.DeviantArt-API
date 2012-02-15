@@ -26,10 +26,11 @@ catch(Exception $e) {
     <p>
         Fonctionnement trés simple, plutôt que d'inclure n fichiers, d'avoir un recours à un
         autoload, il suffit d'inclure l'archive phar !
+        Pour en savoir plus il existe ce trés bon article <a href="http://blog.pascal-martin.fr/post/php-5.3-phar-php-archive#phar-premiere-archive">PHAR premiere archive</a>
     </p>
     <code>
         include ('phar/deviant-api.phar');
-        // Toutes les classes sont dorénavant disponible.
+        // Toutes les classes sont dorénavant disponibles.
     </code>
   </body>
 </html>
