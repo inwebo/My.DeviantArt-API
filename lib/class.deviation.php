@@ -197,14 +197,14 @@ class Deviation extends DeviantParser{
         switch ($size) {
             case 'small':
             default:
-                $data = file_get_contents( $this->deviationSmallSrc );
+                $data     = file_get_contents( $this->deviationSmallSrc );
                 $realName = explode( '/', $this->deviationSmallSrc );
                 file_put_contents($path . 'small-' . $realName[ count($realName) - 1 ] , $data );
                 break;
 
             case 'medium':
                 if( !is_null( $this->deviationMediumSrc ) ) {
-                    $data = file_get_contents( $this->deviationMediumSrc );
+                    $data     = file_get_contents( $this->deviationMediumSrc );
                     $realName = explode( '/', $this->deviationMediumSrc );
                     file_put_contents($path . 'medium-' . $realName[ count($realName) - 1 ] , $data );
                 }
@@ -212,13 +212,12 @@ class Deviation extends DeviantParser{
 
             case 'full':
                 if( !is_null( $this->deviationFullSrc ) ) {
-                    $data = file_get_contents( $this->deviationFullSrc );
+                    $data     = file_get_contents( $this->deviationFullSrc );
                     $realName = explode( '/', $this->deviationFullSrc );
                     file_put_contents($path . 'full-' . $realName[ count($realName) - 1 ] , $data );
                 }
                 break;
         }
-
-
     }
+    
 }
