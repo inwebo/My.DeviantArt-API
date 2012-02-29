@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* NEW */
+
+body {
+    font:13px/1.231 arial,helvetica,clean,sans-serif;
+    background-color:#F7F7F7;
+}
+
+header, header+div, footer {
+    width: 960px;
+    margin:0 auto;
+}
+
+footer {
+    text-align: center;
+}
+
+h1 , h2, h3 {
+    color:#68C2FF;
+    margin-bottom:20px;
+    margin:10px 0;
+    text-shadow: 1px 1px 0px #FFFFFF;
+    filter: dropshadow(color=#FFFFFF, offx=1, offy=1);
+}
+
+h2 a, h3 a {
+    float:right;
+    font-size:x-small;
+    text-decoration: none;
+}
+
+h2 a:hover:before, h3 a:hover:before {
+    content:"^";
+}
+
+a {
+    color:#3687BC;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    color:#1780C6;
+}
+
+a:active {
+    color: #17C4BB;
+}
+
+.clear {
+    clear:both;
+}
+
+hr {
+    border-top:solid 1px #FFFFFF;
+    border-bottom:solid 1px #D6D6D6;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+
+code {
+    padding:10px;
+    border:1px solid #999999;
+    background-color:white;
+    overflow-x:auto;
+    display: block;
+    max-height: 350px;
+}
+
+figure{
+    background:none repeat scroll 0 0 #FFFFFF;
+    border:1px solid #999999;
+    display:block;
+    margin:0 auto 0.75em;
+    padding:6px;
+    text-align: center;
+}
+
+    figcaption {
+        font:italic 13px/18px Cambria,Georgia,"Times New Roman",Times,serif;
+        margin:0.75em auto;
+        text-align:center;
+        display:block;
+    }
+
+input, textarea {
+    background-image: -moz-linear-gradient(center bottom , #FEFEFE 48%, #FAFAFA 74%, #F2F2F2 87%);
+    border: 1px solid #CFCFCF;
+    box-shadow: 0 0 0 1px #FFFFFF inset;
+    padding: 2px;
+    color: #C9C9C9;
+    margin:0.75em 0;
+    padding: 5px;
+}
+
+    input[type='submit'] {
+        color:black;
+        margin-left:1em;
+    }
+
+    input:focus {
+        color:black;
+    }
+
+hr, p {
+    margin:2em 0;
+}
+ol {
+    margin:2em;
+}
+
+#version {
+    float:right;
+    font-size: small;
+    
+}
+
+#version span {
+    color:darkseagreen;
+}
