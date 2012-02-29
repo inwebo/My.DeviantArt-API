@@ -83,8 +83,7 @@ class Display {
      * @todo Differents size of deviation
      */
     public function deviation( $object ) {
-        $buffer = '<img src="'. $object->deviationSmallSrc .'">';
-        echo $buffer;
+        echo '<img src="' . $object->deviationSmallSrc . '">';
     }
 
 }
