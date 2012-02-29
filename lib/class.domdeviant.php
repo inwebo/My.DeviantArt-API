@@ -44,7 +44,7 @@
  *
  */
 
-abstract class DOMDeviant extends DOMDocument{
+class DOMDeviant extends DOMDocument{
 
     /**
      * Deviant's profil id, mine is inwebo
