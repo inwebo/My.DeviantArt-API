@@ -65,9 +65,13 @@
 <header>
     <a name="top"></a>
     <h1><?php echo $projectName; ?> <span id="version">version : <span><?php echo $projectVersion; ?></span></span></h1>
+    <code>
+        <pre>
+            <?php include('README'); ?>
+        </pre>
+    </code>
     <p>
-        API de récupération d'images de deviantart voir <a href="README" target="_blank">readme</a>. Compatible
-        <?php echo $version->deviantVersion; ?>
+        Compatible <?php echo $version->deviantVersion; ?>
     </p>
 </header>
 <div role="main">
@@ -130,43 +134,32 @@
           ?>
           </pre>
       </code>
-      <h2>Gallerie</h2>
+      <h2>Gallerie web page 1</h2>
       <?php
         $gallerie       = new Gallery('inwebo', 'http://inwebo.deviantart.com/gallery/12613778');
         $displayGallery = new DisplayGallery( $gallerie->page(0) );
         $displayGallery->gallerie();
       ?>
       <hr>
-      <h2>Custom display</h2>
+      <h2>Whole default gallery</h2>
       <?php
-        class CustomDisplay extends Display {
-            
-            public function  __construct( SplObjectStorage $collection ) {
-                parent::__construct($collection);
-            }
-
-            public function CustomGallery() {
-                Display::fetchObject( 'CustomDisplay::CustomDeviation' );
-            }
-
-            public function CustomDeviation( $object ) {
-                echo '<figure>
-                            <a href="' . $object->deviantUrl . '" target="_blank" title="'. $object->title .'">
-                                <img src="' . $object->deviationMediumSrc . '" alt="' .$object->title . '" width="'.$object->deviationMediumWidth.'" height="'.$object->deviationMediumHeight.'">
-                            </a>
-                            <figcaption>' . $object->title . '</figcaption>
-                      </figure>';
-            }
-
-      }
-
-        $CustomGallerie = new Gallery('inwebo');
+        $wholeGallerie = new Gallery('inwebo');
+        $displayGallery = new DisplayGallery( $wholeGallerie->all() );
+        $displayGallery->gallerie();
+      ?>
+      <hr>
+      <h2>Custom display</h2>
+      <?php highlight_file('lib/class.customdisplay.php'); ?>
+      <?php
+        $CustomGallerie = new Gallery('inwebo', 'http://inwebo.deviantart.com/gallery/4650925');
         $displayGallery = new CustomDisplay( $CustomGallerie->page(0) );
         $displayGallery->CustomGallery();
-        
       ?>
       <hr>
       <h2>Creation archive PHAR <a href="#top">TOP</a></h2>
+      <p>
+          <a href="http://cweiske.de/tagebuch/php-phar-files.htm" target="_blank" title="Why PHAR archive ?">Why PHAR archives ?</a>
+      </p>
       <p>
           <a href="make.php" target="_blank">make</a>
       </p>
