@@ -113,6 +113,24 @@ class Deviation extends DeviantParser{
     public $deviationFullHeight;
 
     /**
+     * Author's deviation
+     * @var string
+     */
+    public $author;
+
+    /**
+     * Categorie's deviation
+     * @var array
+     */
+    public $categorie;
+
+    /**
+     * Added date deviation
+     * @var string
+     */
+    public $date;
+
+    /**
      * Collect all deviation's attributes from a DOMNode
      *
      * @param DOMNode $node
@@ -131,11 +149,11 @@ class Deviation extends DeviantParser{
         $this->deviationFullSrc      = self::attributeDefault( $node, 'super_fullimg' );
         $this->deviationFullWidth    = self::attributeDefault( $node, 'super_fullw' );
         $this->deviationFullHeight   = self::attributeDefault( $node, 'super_fullh' );
- 
+        $this->prepare();
     }
 
     /**
-     * If a deviation doesn't have got medium src, or large src set them to null
+     * If a deviation doesn't have got medium src, nor large src set them to null
      *
      * @param DOMNode $node
      * @param string $attributeName attribute's value searching for.
@@ -150,4 +168,57 @@ class Deviation extends DeviantParser{
         }
     }
 
+    /**
+     * Prepare deviation's informations
+     *
+     * @param void
+     * @return void
+     */
+    public function prepare() {
+        $by              = explode( 'by', $this->title );
+        $this->title     = trim( $by[0] );
+        $author          = explode( ',', $by[1] );
+        $this->author    = substr( trim( $author[0] ), 1 );
+        $categorie       = explode( 'in', trim( $author[2] ) );
+        $this->categorie = explode( '>', trim( $categorie[1] ) );
+        $this->date      = trim( $author[1] ) . trim( $categorie[0] );
+    }
+
+    /**
+     * Save deviation to local
+     *
+     * @param string $path
+     * @param string $size small, medium, full size
+     * @return void
+     */
+    public function save( $path, $size = 'small') {
+
+        $size     = strtolower($size);
+        switch ($size) {
+            case 'small':
+            default:
+                $data = file_get_contents( $this->deviationSmallSrc );
+                $realName = explode( '/', $this->deviationSmallSrc );
+                file_put_contents($path . 'small-' . $realName[ count($realName) - 1 ] , $data );
+                break;
+
+            case 'medium':
+                if( !is_null( $this->deviationMediumSrc ) ) {
+                    $data = file_get_contents( $this->deviationMediumSrc );
+                    $realName = explode( '/', $this->deviationMediumSrc );
+                    file_put_contents($path . 'medium-' . $realName[ count($realName) - 1 ] , $data );
+                }
+                break;
+
+            case 'full':
+                if( !is_null( $this->deviationFullSrc ) ) {
+                    $data = file_get_contents( $this->deviationFullSrc );
+                    $realName = explode( '/', $this->deviationFullSrc );
+                    file_put_contents($path . 'full-' . $realName[ count($realName) - 1 ] , $data );
+                }
+                break;
+        }
+
+
+    }
 }
