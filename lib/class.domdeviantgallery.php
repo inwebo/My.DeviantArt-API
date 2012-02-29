@@ -62,13 +62,13 @@ class DOMDeviantGallery extends DOMDeviant{
      * @param string $categoryUrl
      * @return void
      */
-    public function __construct( $profilId, $categoryUrl = NULL ) {
+    public function __construct( $profilId, $galleryUrl = NULL ) {
         parent::__construct( $profilId );
 
-        if( $categoryUrl !== NULL ) {
-            if( $this->getHTML( $wichOne ) ) {
+        if( $galleryUrl !== NULL ) {
+            if( $this->getHTML( $galleryUrl ) ) {
                 @$this->loadHTML( $this->html );
-                $this->url = $wichOne;
+                $this->url = $galleryUrl;
             }
         }
         else {
@@ -79,7 +79,5 @@ class DOMDeviantGallery extends DOMDeviant{
         }
 
     }
-
-
 
 }
