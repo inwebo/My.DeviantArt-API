@@ -1,23 +1,48 @@
-Utilisateur depuis 5 ans maintenant du site http://www.deviantart.com/ ( que je vous conseil au passage ), je fais un constat trés amer : Mais ou se trouve votre API ? et tout ce qui fait un site moderne ? Co-
--mment maintenir mon portfolio synchronisé avec mon compte deviantart sans y passer 1H ? C'est vraiment trop ? FlickR dispose lui depuis quelques temps maintenant de son API, faut en prendre de la graine les copains.
+Voilà une class PHP5 utilisant l'extension DOM pour parser votre compte deviant
+art et renvoyer toutes les infos nécessaires (avatar, id, gallerie, deviation).
+Rien de bien compliqué mais cela rends bien des services.
 
-Alors voilà une class PHP5 utilisant l'extension DOM pour parser votre compte deviant art et renvoyer toutes les infos nécessaires (avatar, id, gallerie). Rien de bien compliqué mais cela rends bien des services à tous nos amis procrastinateurs.
+Fonctionnement trés simple, je considère qu'une page retournée par deviantart
+ est un arbre DOM, qu'il suffira de parser avec des requêtes Xpath pour en
+extraire les informations que l'on souhaite. Plus précisément pour l'application
+ chaque page ouaib est un objet DOMNode (c'est ce que font toutes les classes
+dont le nom commence par dom). Nous pouvons donc requêter ces objets avec des
+requêtes XPATH (toutes les classes commancant par deviant).
 
-Fonctionnement trés simple, je considère qu'une page retourné par deviantart est un arbre DOM, qu'il suffira de parser avec des requêtes Xpath pour en extraire les informations que l'on souhaite.
-Plus précisément pour l'application chaque page ouaib est un objet DOMNode (c'est ce que fais toutes les classes dont le nom commence par dom). Nous pouvons donc requêter ces objets avec des requêtes XPATH (toutes les classes commancant par deviant).
+Chaque résultat de requête est stocké dans deux attributs de classes.
 
-Chaque résultat de requêtes est stocké dans deux attributs de classes.
+L'attribut NodeList est un objet ... NodeList. C'est cet objet que nous allons
+itérer pour trouver toutes les déviations contenues dans le code HTML.
 
-Les attributs de classes se terminant par NodeList (ex de la classe DeviantFavorites $favoritesNodeList) sont un objet ... NodeList.
-Un second attribut se terminant par SplObjectStorage (ex de la classe DeviantFavorites $favoritesDeviationsSplObjectStorage) est une collection d'objet (voir la documentation).
+Un second attribut splObjectStorage est un objet splObjectStorage. Qui contient
+l'ensemble des objets Deviation trouvés dans une gallerie. Le pourquoi du comment
+d'un splObjectStorage plutôt qu'un array :
+
+http://technosophos.com/content/set-objects-php-arrays-vs-splobjectstorage
+
+Averaging this over multiple runs, SplObjectStorage executed both fill and check
+ functions twice as fast as the array method presented above. We tried various
+permutations of the tests above.
+
+Finalement il suffira d'itérer notre splObjectStorage est d'appliquer un callback
+sur chaque objet déviation pour l'afficher.
+
+Il est bien sûr possible de configurer l'affichage en étandant la classe display.
+Il y a un exemple un peu plus bas.
 
 ! Mise en garde !
-J'ai lu la charte d'utilisation et cette classe n'as pas l'air de rentrer en conflit avec, donc si des anglophones (avertis) pouvaient me confirmer.
+J'ai lu la charte d'utilisation et cette classe n'as pas l'air de rentrer en
+conflit avec, donc si des anglophones (avertis) pouvaient me confirmer.
 
-Par contre vous DEVEZ utiliser cette class uniquement avec VOTRE COMPTE deviantart, je n'ai pas écrit cette API dans l'idée de piller le travail des autres. VOUS êtes responsable de ce que vous faites !
+Par contre vous DEVEZ utiliser cette class uniquement avec VOTRE COMPTE
+deviantart, je n'ai pas écrit cette API dans l'idée de piller le travail des
+autres. VOUS êtes responsable de ce que vous faites !
 
-Protips, mettez en CACHE tout ce que vous allez récupèrer, les images et les pages HTML. Deviantart se réserve le droit de BANNIR des IP si ils considèrent (à tort ou à raison) qu'il y a une utilisation frauduleuse du service.
+Protips, mettez en CACHE tout ce que vous allez récupèrer, les images et les
+ pages HTML. Deviantart se réserve le droit de BANNIR des IP si ils considèrent
+(à tort ou à raison) qu'il y a une utilisation frauduleuse du service.
 
 Pour les curieux l'API est disponible sous forme d'archive phar (voir make.php).
 
-Il reste pas mal de chose à implémenter car je n'ai pas de compte prémium et je ne peux accéder à toutes les sections du site.
+N'oubliez pas la dernière version se trouve sur github :
+https://github.com/inwebo/My.DeviantArtParser
