@@ -45,22 +45,22 @@
  */
 class DeviantGallery extends DeviantParser {
 
-    public $pagesNodeList;
     public $pages;
+    public $pagesUrlList;
+    protected $pagesPattern;
 
-    public $deviationsNodeList;
-    public $deviationsSplObjectStorage;
-
-    public function  __construct(DOMDocument $doc) {
+    public function  __construct( DOMDocument $doc ) {
         parent::__construct($doc);
-        $this->pages                      = $this->totalPages();
-        $this->deviationsNodeList         = $this->query("//a[@class='thumb']");
-        $this->deviationsSplObjectStorage = $this->iterate( $this->deviationsNodeList, 'DeviantParser::factoryDeviation' ) ;
+        $this->pages            = $this->totalPages();
+        $this->pagesPattern     = '?offset=';
+        $this->nodeList         = $this->query("//div[@id='gmi-ResourceStream']/div/span/span/a[@class='thumb']");
+        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;
+        $this->pagesUrlList     = $this->buildPagesList();
     }
 
     public function totalPages() {
-        $this->pagesNodeList = $this->query("//ul[@class='pages']/li");
-        $length              = $this->pagesNodeList->length;
+        $this->nodeList = $this->query("//ul[@class='pages']/li");
+        $length         = $this->nodeList->length;
 
         if( $length === 0 ) {
             $length++;
@@ -70,6 +70,16 @@ class DeviantGallery extends DeviantParser {
         }
 
         return $length;
+    }
+
+    public function buildPagesList() {
+        $buffer     = array();
+        $offsetBase = 24;
+        for( $i = 0 ; $i !== $this->pages ; $i++ ) {
+            $buffer[$i+1] = $this->pagesPattern . $offsetBase * $i;
+        }
+        
+        return  $buffer ;
     }
 
 }

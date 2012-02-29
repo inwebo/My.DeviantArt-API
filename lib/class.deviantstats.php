@@ -46,13 +46,6 @@
 class DeviantStats extends DeviantParser {
 
     /**
-     * Nodes from stats section
-     *
-     * @var DOMNodeList
-     */
-    public $statsNodeList;
-
-    /**
      * Total user's deviations
      * @var string
      */
@@ -109,16 +102,16 @@ class DeviantStats extends DeviantParser {
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
 
-        $this->statsNodeList = $this->query("//div[@class='pbox pppbox']/strong");
+        $this->nodeList = $this->query("//div[@class='pbox pppbox']/strong");
         
-        $this->deviations    = $this->statsNodeList->item(0)->nodeValue;
-        $this->comments      = $this->statsNodeList->item(1)->nodeValue;
-        $this->pageviews     = $this->statsNodeList->item(2)->nodeValue;
-        $this->scraps        = $this->statsNodeList->item(3)->nodeValue;
-        $this->watchers      = $this->statsNodeList->item(4)->nodeValue;
-        $this->critiques     = $this->statsNodeList->item(5)->nodeValue;
-        $this->forumPosts    = $this->statsNodeList->item(6)->nodeValue;
-        $this->favourites    = $this->statsNodeList->item(7)->nodeValue;
+        $this->deviations    = $this->nodeList->item(0)->nodeValue;
+        $this->comments      = $this->nodeList->item(1)->nodeValue;
+        $this->pageviews     = $this->nodeList->item(2)->nodeValue;
+        $this->scraps        = $this->nodeList->item(3)->nodeValue;
+        $this->watchers      = $this->nodeList->item(4)->nodeValue;
+        $this->critiques     = $this->nodeList->item(5)->nodeValue;
+        $this->forumPosts    = $this->nodeList->item(6)->nodeValue;
+        $this->favourites    = $this->nodeList->item(7)->nodeValue;
 
     }
 

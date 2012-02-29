@@ -46,20 +46,6 @@
 class DeviantFavorites extends DeviantParser {
     
     /**
-     * Querying result
-     *
-     * @var DOMNodeList
-     */
-    public $favoritesNodeList;
-    
-    /**
-     * All found deviations from favorites as object put in SplObjectStorage
-     *
-     * @var SplObjectStorage
-     */
-    public $favoritesDeviationsSplObjectStorage;
-
-    /**
      * Query DOMDocument searching for deviations.
      *
      * @param DOMDocument $doc
@@ -67,8 +53,8 @@ class DeviantFavorites extends DeviantParser {
      */
     public function  __construct(DOMDocument $doc) {
         parent::__construct( $doc );
-        $this->favoritesNodeList                   = $this->query("//div[@class='gr-box gr-genericbox  gr-faves']/div[@class='gr-body']/div/div/div/span/span/a");
-        $this->favoritesDeviationsSplObjectStorage = $this->iterate( $this->favoritesNodeList, 'DeviantParser::factoryDeviation' ) ;
+        $this->nodeList         = $this->query( "//div[@class='gr-box gr-genericbox  gr-faves']/div[@class='gr-body']/div/div/div/span/span/a" ) ;
+        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;
     }
     
 }

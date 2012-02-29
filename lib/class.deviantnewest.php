@@ -46,20 +46,6 @@
 class DeviantNewest extends DeviantParser {
 
     /**
-     * Querying result
-     *
-     * @var DOMNodeList
-     */
-    public $newestNodeList;
-
-    /**
-     * All found deviations from favorites as object put in SplObjectStorage
-     *
-     * @var SplObjectStorage
-     */
-    public $newestDeviationsSplObjectStorage;
-
-    /**
      * Query DOMDocument searching for deviations.
      *
      * @param DOMDocument $doc
@@ -67,8 +53,8 @@ class DeviantNewest extends DeviantParser {
      */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
-        $this->newestNodeList                   = $this->query("//div[@class='gr-box gr-genericbox  gr-newest']/div[@class='gr-body']/div/div/div/span/span/a");
-        $this->newestDeviationsSplObjectStorage = $this->iterate( $this->newestNodeList, 'DeviantParser::factoryDeviation' ) ;
+        $this->nodeList                   = $this->query("//div[@class='gr-box gr-genericbox  gr-newest']/div[@class='gr-body']/div/div/div/span/span/a");
+        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;
     }
     
 }

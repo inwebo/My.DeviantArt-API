@@ -46,20 +46,6 @@
 class DeviantGalleriesList extends DeviantParser {
 
     /**
-     * Querying result
-     *
-     * @var DOMNodeList
-     */
-    public $galleriesNodeList;
-
-    /**
-     * All found deviations from favorites as object put in SplObjectStorage
-     *
-     * @var SplObjectStorage
-     */
-    public $galleriesSplObjectStorage;
-
-    /**
      * Query DOMDocument searching for deviations.
      *
      * @param DOMDocument $doc
@@ -67,8 +53,8 @@ class DeviantGalleriesList extends DeviantParser {
      */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
-        $this->galleriesNodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->galleriesSplObjectStorage = $this->iterate( $this->galleriesNodeList, 'DeviantParser::factoryGallery' ) ;
+        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
+        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
     }
 
 }

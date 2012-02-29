@@ -44,8 +44,22 @@
  *
  */
 
-class DeviantParser extends DOMXPath {
-    
+abstract class DeviantParser extends DOMXPath {
+
+    /**
+     * Querying result
+     *
+     * @var DOMNodeList
+     */
+    public $nodeList;
+
+    /**
+     * Store all found object
+     *
+     * @var SplObjectStorage
+     */
+    public $splObjectStorage;
+
     /**
      * Init Xpath
      *
@@ -90,7 +104,7 @@ class DeviantParser extends DOMXPath {
      * Make deviation object from a DOMNode
      *
      * @param DOMNode $node a deviation't DOMNode
-     * @return object Daviation
+     * @return object Deviation
      */
     public static function factoryDeviation( DOMNode $node ) {
         return new Deviation( $node );
