@@ -45,10 +45,29 @@
  */
 class DeviantGallery extends DeviantParser {
 
+    /**
+     * How many page in gallery
+     * @var int
+     */
     public $pages;
+
+    /**
+     * Each pages have got a distinct url
+     * @var array
+     */
     public $pagesUrlList;
+
+    /**
+     * Each page's link have got same design
+     * @var string
+     */
     protected $pagesPattern;
 
+    /**
+     * Compute total page, query DOMDocument $doc and harvest all deviations
+     *
+     * @param DOMDocument $doc
+     */
     public function  __construct( DOMDocument $doc ) {
         parent::__construct($doc);
         $this->pages            = $this->totalPages();
@@ -58,6 +77,12 @@ class DeviantGallery extends DeviantParser {
         $this->pagesUrlList     = $this->buildPagesList();
     }
 
+    /**
+     * Compute total page
+     *
+     * @param void
+     * @return int $length
+     */
     public function totalPages() {
         $this->nodeList = $this->query("//ul[@class='pages']/li");
         $length         = $this->nodeList->length;
@@ -72,6 +97,10 @@ class DeviantGallery extends DeviantParser {
         return $length;
     }
 
+    /**
+     * Build every page's link from one gallery
+     * @return array $buffer
+     */
     public function buildPagesList() {
         $buffer     = array();
         $offsetBase = 24;
