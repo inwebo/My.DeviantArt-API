@@ -31,7 +31,7 @@
  */
 
 /**
- * Query a DOMDocument gallery and grab all deviations.
+ * Query a DOMDocument gallery. Extract deviations by pages or all deviations.
  *
  * @category  My.Deviant API
  * @package   Base
@@ -45,18 +45,55 @@
  */
 class Gallery {
 
+    /**
+     * Deviantart id
+     * @var string
+     */
     public $deviantId;
+
+    /**
+     * Gallery's url
+     * @var string
+     */
     public $url;
-    public $currentPage;
+
+    /**
+     * How many pages in gallery
+     * @var int
+     */
     public $totalPage;
+
+    /**
+     * All deviations are put in this storage
+     * @var splObjectStorage
+     */
     public $splObjectStorage;
+
+    /**
+     * DOMDocument representation of one gallery
+     * @var DOMDocument
+     */
     public $dom;
+
+    /**
+     * Xpath Result
+     * @var object
+     */
     public $query;
 
+    /**
+     * Prepare informations about one gallery, such as how many pages exists and
+     * DOMDocument representation
+     *
+     * @param string $deviantId
+     * @param string $url, if is null default gallery will be parse.
+     * @return void
+     */
     public function __construct( $deviantId, $url = NULL) {
         
-        $this->deviantId = $deviantId;
-        $this->splObjectStorage = new SplObjectStorage();;
+        $this->deviantId        = $deviantId;
+        $this->splObjectStorage = new SplObjectStorage();
+        
         if( !is_null( $url ) ) {
             $this->url   = $url;
             $this->dom   = new DOMDeviantGallery( $deviantId, $this->url );
@@ -73,6 +110,12 @@ class Gallery {
 
     }
 
+    /**
+     * Browse gallery by page.
+     *
+     * @param int $which, if $wich doesn't exists default page will be return
+     * @return splObjectStorage 
+     */
     public function page( $which ) {
 
         if( ( intval( $which ) <= count( $this->xpath->pagesUrlList ) ) && ( intval( $which ) >= 0 ) ) {
@@ -89,7 +132,7 @@ class Gallery {
     }
 
     /**
-     * Grab all deviation from a gallerie
+     * Grab all deviations from one gallerie.
      *
      * @param void
      * @return splObjectStorage
