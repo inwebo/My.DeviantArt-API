@@ -17,6 +17,10 @@ footer {
     text-align: center;
 }
 
+h1 {
+    margin-bottom: 3em;
+}
+
 h1 , h2, h3 {
     color:#68C2FF;
     margin-bottom:20px;
@@ -70,6 +74,7 @@ code {
     overflow-x:auto;
     display: block;
     max-height: 350px;
+    margin-bottom: 2em;
 }
 
 figure{
@@ -79,6 +84,9 @@ figure{
     margin:0 auto 0.75em;
     padding:6px;
     text-align: center;
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 1em;
 }
 
     figcaption {
