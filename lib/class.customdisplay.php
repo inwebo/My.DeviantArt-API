@@ -31,7 +31,7 @@
  */
 
 /**
- * Custom Display exemple
+ * Custom Display example
  *
  * @category  My.Deviant API
  * @package   Example
@@ -62,17 +62,15 @@ class CustomDisplay extends Display {
     // This is an HTML5 exemple
     protected function CustomDeviation($object) {
 
-        // Save to local =)
+        // Save locally in temp/ dir
         $object->save('temp/');
 
         echo '<figure>
                 <a href="' . $object->deviantUrl . '" target="_blank" title="' . $object->title . '">
-                    <img src="' . $object->deviationMediumSrc . '" alt="' . $object->title . '" width="' . $object->deviationMediumWidth . '" height="' . $object->deviationMediumHeight . '">
+                    <img src="' . $object->deviationSmallSrc . '" alt="' . $object->title . '" width="' . $object->deviationSmallWidth . '" height="' . $object->deviationSmallHeight . '">
                 </a>
                 <figcaption>' . $object->title . '</figcaption>
               </figure>';
     }
-
-
 
 }
