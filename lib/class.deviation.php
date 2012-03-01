@@ -185,7 +185,7 @@ class Deviation extends DeviantParser{
     }
 
     /**
-     * Save deviation to local
+     * Save deviation locally
      *
      * @param string $path
      * @param string $size small, medium, full size
