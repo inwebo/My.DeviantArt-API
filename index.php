@@ -40,8 +40,6 @@
         
         $DOMGallery       = new DOMDeviantGallery( $deviantid );
         $oneGallery       = new DeviantGallery($DOMGallery);
-        //var_dump( $oneGallery->pages );
-        //var_dump( $oneGallery->pagesUrlList );
 
     } catch (Exception $e) {
         echo $e->getMessage();
