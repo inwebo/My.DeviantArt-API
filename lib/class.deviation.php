@@ -190,6 +190,7 @@ class Deviation extends DeviantParser{
      * @param string $path
      * @param string $size small, medium, full size
      * @return void
+	 * @todo  test directory exists
      */
     public function save( $path, $size = 'small') {
 
