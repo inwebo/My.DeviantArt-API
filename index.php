@@ -3,6 +3,7 @@
     $projectVersion          = '02-01-2012';
     $projectKeywords         = 'php, deviantart, api, PHP5';
     $projectShortDescription = 'API PHP5 de récupération d\'images de deviantart.';
+	error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ?>
 <?php include 'autoload.php'; ?>
 <?php ini_set('display_errors', TRUE ); ?>
