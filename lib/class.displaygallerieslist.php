@@ -55,6 +55,7 @@ class DisplayGalleriesList extends Display {
      * @return void
      */
     public function galleriesList() {
+        /* @todo : */	
         Display::fetchObject( 'DisplayGalleriesList::oneGallery' );
     }
 
@@ -64,7 +65,7 @@ class DisplayGalleriesList extends Display {
      * @param void
      * @return void
      */
-    public function oneGallery( $object ) {
+    static public function oneGallery( $object ) {
         $buffer = '<li><a href="' . $object->url . '">' . $object->name . '</a></li>';
         echo $buffer;
     }
