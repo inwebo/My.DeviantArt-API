@@ -128,7 +128,7 @@ class DeviantProfil extends DeviantParser {
         $this->prefix              = $buffer[0][0];
         $this->tagLine             = $buffer[1];
 
-        $this->avatarNodeList      = $this->query("//div[@class='catbar']/div/a/img[@class='avatar']");
+        $this->avatarNodeList      = $this->query("//div[@class='catbar']/div/a/img");
         $this->avatarSrc           = $this->avatarNodeList->item(0)->attributes->getNamedItem("src")->nodeValue ;
 
     }
