@@ -72,7 +72,7 @@ class DeviantGallery extends DeviantParser {
         parent::__construct($doc);
         $this->pages            = $this->totalPages();
         $this->pagesPattern     = '?offset=';
-        $this->nodeList         = $this->query("//div[@id='gmi-ResourceStream']/div/span/span/a[@class='thumb']");
+        $this->nodeList         = $this->query("//a[@class='thumb']");
         $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;
         $this->pagesUrlList     = $this->buildPagesList();
     }
