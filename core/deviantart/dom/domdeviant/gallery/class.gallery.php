@@ -31,7 +31,8 @@
  */
 
 /**
- * Query a DOMDocument searching for all favorites
+ * Grab html code from a deviant gallery webpage and make it available as
+ *  DOMDocument.
  *
  * @category  My.Deviant API
  * @package   Base
@@ -43,18 +44,40 @@
  * @since     File available since Beta 01-02-2012
  *
  */
-class DeviantGalleriesList extends DeviantParser {
+
+class Gallery extends DOMDeviant{
 
     /**
-     * Query DOMDocument searching for deviations. 
+     * Getting html from this $url
      *
-     * @param DOMDocument $doc
-     * @return void
+     * @var string
      */
-    public function  __construct(DOMDocument $doc) {
-        parent::__construct($doc);
-        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
+    public $url;
+
+    /**
+     * If $categoryUrl is NULL get html code from default gallery. Else get html
+     * code from $url.
+     *
+     * @param string $profilId
+     * @param string $categoryUrl
+     * @return void 
+     */
+    public function __construct( $profilId, $galleryUrl = NULL ) {
+        parent::__construct( $profilId );
+
+        if( $galleryUrl !== NULL ) {
+            if( $this->getHTML( $galleryUrl ) ) {
+                @$this->loadHTML( $this->html );
+                $this->url = $galleryUrl;
+            }
+        }
+        else {
+            if( $this->getHTML( $this->galleryUrl ) ) {
+                @$this->loadHTML( $this->html );
+                $this->url = $this->galleryUrl;
+            }
+        }
+
     }
 
 }

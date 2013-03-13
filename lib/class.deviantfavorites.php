@@ -43,7 +43,7 @@
  *
  */
 
-class DeviantFavorites extends DeviantParser {
+class DeviantFavorites extends DeviantParser { 
     
     /**
      * Query DOMDocument searching for deviations.

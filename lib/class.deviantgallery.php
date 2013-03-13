@@ -108,7 +108,7 @@ class DeviantGallery extends DeviantParser {
             $buffer[$i+1] = $this->pagesPattern . $offsetBase * $i;
         }
         
-        return  $buffer ;
+        return  $buffer ; 
     }
 
 }

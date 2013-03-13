@@ -51,7 +51,7 @@ class DeviantNewest extends DeviantParser {
      * @param DOMDocument $doc
      * @return void
      */
-    public function  __construct(DOMDocument $doc) {
+    public function  __construct(DOMDocument $doc) { 
         parent::__construct($doc);
         $this->nodeList                   = $this->query("//div[@class='gr-box gr-genericbox  gr-newest']/div[@class='gr-body']/div/div/div/span/span/a");
         $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;

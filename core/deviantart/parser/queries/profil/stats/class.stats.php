@@ -31,7 +31,7 @@
  */
 
 /**
- * Query a DOMDocument searching for all favorites
+ * Query a DOMDocument searching for user stats.
  *
  * @category  My.Deviant API
  * @package   Base
@@ -43,18 +43,76 @@
  * @since     File available since Beta 01-02-2012
  *
  */
-class DeviantGalleriesList extends DeviantParser {
+class Stats extends DeviantParser {
 
     /**
-     * Query DOMDocument searching for deviations. 
+     * Total user's deviations
+     * @var string
+     */
+    public $deviations;
+
+    /**
+     * Total user's comments
+     * @var string
+     */
+    public $comments;
+
+    /**
+     * User's account pageview
+     * @var string
+     */
+    public $pageviews;
+
+    /**
+     * Total user's scraps
+     * @var string
+     */
+    public $scraps;
+
+    /**
+     * Users account watchers
+     * @var string
+     */
+    public $watchers;
+
+    /**
+     * Total user's critiques
+     * @var string
+     */
+    public $critiques;
+
+    /**
+     * Total user's forum posts
+     * @var string
+     */
+    public $forumPosts;
+
+    /**
+     * Total user's favourites
+     * @var string
+     */
+    public $favourites;
+
+    /**
+     * Query DOMDocument searching for stats.
      *
      * @param DOMDocument $doc
      * @return void
      */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);
-        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
+
+        $this->nodeList = $this->query("//div[@class='pbox pppbox']/strong");
+        
+        $this->deviations    = $this->nodeList->item(0)->nodeValue;
+        $this->comments      = $this->nodeList->item(1)->nodeValue;
+        $this->pageviews     = $this->nodeList->item(2)->nodeValue;
+        $this->scraps        = $this->nodeList->item(3)->nodeValue;
+        $this->watchers      = $this->nodeList->item(4)->nodeValue;
+        $this->critiques     = $this->nodeList->item(5)->nodeValue;
+        $this->forumPosts    = $this->nodeList->item(6)->nodeValue;
+        $this->favourites    = $this->nodeList->item(7)->nodeValue;
+
     }
 
 }

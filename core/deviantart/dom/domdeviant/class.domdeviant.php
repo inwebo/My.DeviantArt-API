@@ -31,8 +31,8 @@
  */
 
 /**
- * Query a DOMDocument searching for all favorites
- *
+ * Grab html code from a webpage as string.
+ * 
  * @category  My.Deviant API
  * @package   Base
  * @copyright Copyright (c) 2005-2011 Inwebo (http://www.inwebo.net)
@@ -41,20 +41,65 @@
  * @version   $Id:$
  * @link      https://github.com/inwebo/My.DeviantArtParser
  * @since     File available since Beta 01-02-2012
- *
  */
-class DeviantGalleriesList extends DeviantParser {
+
+class DOMDeviant extends DOMDocument{
 
     /**
-     * Query DOMDocument searching for deviations. 
-     *
-     * @param DOMDocument $doc
-     * @return void
+     * Deviant's profil id, mine is inwebo
+     * 
+     * @var string
      */
-    public function  __construct(DOMDocument $doc) {
-        parent::__construct($doc);
-        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
+    public $profilId;
+
+    /**
+     * Deviant's profil url, mine is http://inwebo.deviantart.com/
+     *
+     * @var string
+     */
+    public $profilUrl;
+
+    /**
+     * Deviant's gallery default url, mine is http://inwebo.deviantart.com/gallery/
+     *
+     * @var string
+     */
+    public $galleryUrl;
+
+    /**
+     * Webpage's html code.
+     *
+     * @var string
+     */
+    public $html;
+
+
+    /**
+     * Construct essentials class attributes
+     *
+     * @param string $profilId
+     */
+    public function __construct( $profilId ) {
+        parent::__construct();
+        $this->profilId   = $profilId;
+        $this->profilUrl  = 'http://' . $this->profilId . '.deviantart.com/';
+        $this->galleryUrl = $this->profilUrl . 'gallery/';
     }
 
+    /**
+     * Get html from $url.
+     *
+     * @param string $url
+     * @return bool
+     * @throws exception if $url doesn't exists
+     */
+    public function getHTML( $url ) {
+            if( ( $this->html = @file_get_contents( $url ) ) !== FALSE ) {
+                return true;
+            }
+            else {
+                throw new Exception('<strong>' . $this->profilId . '</strong>\'s page doesn\'t exists @ : ' . $url );
+            }
+    }
+    
 }

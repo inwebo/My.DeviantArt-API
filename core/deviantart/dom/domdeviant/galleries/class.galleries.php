@@ -31,7 +31,7 @@
  */
 
 /**
- * Query a DOMDocument searching for all favorites
+ * Get all galleries available from account.
  *
  * @category  My.Deviant API
  * @package   Base
@@ -43,18 +43,22 @@
  * @since     File available since Beta 01-02-2012
  *
  */
-class DeviantGalleriesList extends DeviantParser {
+
+class Galleries extends DOMDeviant{
 
     /**
-     * Query DOMDocument searching for deviations. 
+     * Galleries from $profilId
      *
-     * @param DOMDocument $doc
+     * @param string $profilId
      * @return void
      */
-    public function  __construct(DOMDocument $doc) {
-        parent::__construct($doc);
-        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
+    public function __construct( $profilId ) {
+        parent::__construct( $profilId );
+
+        if( $this->getHTML( $this->galleryUrl ) ) {
+            @$this->loadHTML( $this->html );            
+        }
+
     }
 
 }

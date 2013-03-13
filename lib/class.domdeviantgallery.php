@@ -60,7 +60,7 @@ class DOMDeviantGallery extends DOMDeviant{
      *
      * @param string $profilId
      * @param string $categoryUrl
-     * @return void
+     * @return void 
      */
     public function __construct( $profilId, $galleryUrl = NULL ) {
         parent::__construct( $profilId );

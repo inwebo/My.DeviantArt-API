@@ -106,7 +106,7 @@ abstract class DeviantParser extends DOMXPath {
      * @param DOMNode $node a deviation't DOMNode
      * @return object Deviation
      */
-    public static function factoryDeviation( DOMNode $node ) {
+    static public function factoryDeviation( DOMNode $node ) {
         return new Deviation( $node );
     }
 
@@ -116,11 +116,10 @@ abstract class DeviantParser extends DOMXPath {
      * @param DOMNode $node a deviation't DOMNode
      * @return object stdClass $gallerie
      */
-    public static function factoryGallery( DOMNode $node ) {
+    static public function factoryGallery( DOMNode $node ) {
         $gallerie       = new stdClass();
         $gallerie->url  = $node->attributes->getNamedItem("href")->nodeValue;
         $gallerie->name = $node->nodeValue;
-
         return $gallerie;
     }
 
@@ -131,7 +130,7 @@ abstract class DeviantParser extends DOMXPath {
      * @return array $buffer
      * @see http://php.net/manual/fr/function.get-object-vars.php
      */
-    public static function toArray( SplObjectStorage $collection ) {
+    static public function toArray( SplObjectStorage $collection ) {
         $buffer = array();
         $collection->rewind();
         while( $collection->valid() ) {

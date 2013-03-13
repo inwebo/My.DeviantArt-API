@@ -8,7 +8,7 @@
  *
  * Partager : reproduire, distribuer et communiquer l'oeuvre
  * Remixer  : adapter l'oeuvre
- * 
+ *
  * Selon les conditions suivantes :
  *
  * Attribution : Vous devez attribuer l'oeuvre de la manière indiquée par

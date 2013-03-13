@@ -31,7 +31,7 @@
  */
 
 /**
- * Query a DOMDocument searching for all favorites
+ * Display a SplObjectStorage collection ( eg from a deviantnewest object )
  *
  * @category  My.Deviant API
  * @package   Base
@@ -41,20 +41,49 @@
  * @version   $Id:$
  * @link      https://github.com/inwebo/My.DeviantArtParser
  * @since     File available since Beta 01-02-2012
- *
  */
-class DeviantGalleriesList extends DeviantParser {
+
+class Display {
 
     /**
-     * Query DOMDocument searching for deviations. 
+     * A collection of deviation object
+     * @var SplObjectStorage
+     */
+    public $collection;
+
+    /**
+     * Construct object
      *
-     * @param DOMDocument $doc
+     * @param SplObjectStorage $collection
      * @return void
      */
-    public function  __construct(DOMDocument $doc) {
-        parent::__construct($doc);
-        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
+    public function  __construct( SplObjectStorage $collection ) {
+        $this->collection = $collection;
+    }
+
+    /**
+     * Iterate through SplObjectStorage object, and apply a callback function
+     * $callBack on each item.
+     *
+     * @param string $callBack
+     * @return void
+     */
+    public function fetchObject( $callBack ) {
+        $this->collection->rewind();
+        while( $this->collection->valid() ) {
+            call_user_func( $callBack, $this->collection->current() );
+            $this->collection->next();
+        }
+    }
+
+    /**
+     * Graphical representation of one deviation
+     *
+     * @param string $callBack
+     * @todo Differents size of deviation
+     */
+    public function deviation( $object ) {
+        echo '<img src="' . $object->deviationSmallSrc . '">';
     }
 
 }

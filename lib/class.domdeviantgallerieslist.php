@@ -57,7 +57,7 @@ class DOMDeviantGalleriesList extends DOMDeviant{
 
         if( $this->getHTML( $this->galleryUrl ) ) {
             @$this->loadHTML( $this->html );            
-        }
+        } 
 
     }
 

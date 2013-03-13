@@ -84,6 +84,6 @@ class Display {
      */
     public function deviation( $object ) {
         echo '<img src="' . $object->deviationSmallSrc . '">';
-    }
+    } 
 
 }

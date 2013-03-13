@@ -35,12 +35,12 @@
 
         // Which are available galleries from a deviant user ?
         // First we need a DOMDocument to parse
-        $DOMGalleriesList = new DOMDeviantGalleriesList( $deviantid );
+        //$DOMGalleriesList = new DOMDeviantGalleriesList( $deviantid );
         // As usual we Xpath it
-        $galleriesList    = new DeviantGalleriesList( $DOMGalleriesList );
+        //$galleriesList    = new DeviantGalleriesList( $DOMGalleriesList );
         
-        $DOMGallery       = new DOMDeviantGallery( $deviantid );
-        $oneGallery       = new DeviantGallery($DOMGallery);
+        //$DOMGallery       = new DOMDeviantGallery( $deviantid );
+        //$oneGallery       = new DeviantGallery($DOMGallery);
 
     } catch (Exception $e) {
         echo $e->getMessage();

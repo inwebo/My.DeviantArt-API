@@ -29,7 +29,6 @@
  * cette page web.
  *
  */
-
 /**
  * Query a DOMDocument searching for all favorites
  *
@@ -43,18 +42,19 @@
  * @since     File available since Beta 01-02-2012
  *
  */
-class DeviantGalleriesList extends DeviantParser {
 
+class Favorites extends DeviantParser {
+    
     /**
-     * Query DOMDocument searching for deviations. 
+     * Query DOMDocument searching for deviations.
      *
      * @param DOMDocument $doc
      * @return void
      */
     public function  __construct(DOMDocument $doc) {
-        parent::__construct($doc);
-        $this->nodeList         = $this->query("//div[@class='stream col-thumbs']/div/div/div[@class='label']/a");
-        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryGallery' ) ;
+        parent::__construct( $doc );
+        $this->nodeList         = $this->query( "//div[@class='gr-box gr-genericbox  gr-faves']/div[@class='gr-body']/div/div/div/span/span/a" ) ;
+        $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;
     }
-
+    
 }

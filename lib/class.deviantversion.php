@@ -2,7 +2,7 @@
 /**
  * My.Deviant API
  *
- * LICENCE
+ * LICENCE 
  *
  * Vous êtes libre de :
  *
@@ -46,7 +46,7 @@
 class DeviantVersion extends DeviantParser {
     /**
      * Current deviantArt version
-     * @var string
+     * @var string 
      */
     public $deviantVersion;
 

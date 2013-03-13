@@ -43,10 +43,10 @@
  * @since     File available since Beta 01-02-2012
  *
  */
-class DeviantGalleriesList extends DeviantParser {
+class Galleries extends DeviantParser {
 
     /**
-     * Query DOMDocument searching for deviations. 
+     * Query DOMDocument searching for deviations.
      *
      * @param DOMDocument $doc
      * @return void

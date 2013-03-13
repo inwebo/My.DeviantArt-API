@@ -55,7 +55,7 @@ class DOMDeviantProfil extends DOMDeviant{
         parent::__construct( $profilId );
 
         if( $this->getHTML( $this->profilUrl ) ) {
-            @$this->loadHTML( $this->html );        
+            @$this->loadHTML( $this->html );         
         }
 
     }

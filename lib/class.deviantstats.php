@@ -97,7 +97,7 @@ class DeviantStats extends DeviantParser {
      * Query DOMDocument searching for stats.
      *
      * @param DOMDocument $doc
-     * @return void
+     * @return void 
      */
     public function  __construct(DOMDocument $doc) {
         parent::__construct($doc);

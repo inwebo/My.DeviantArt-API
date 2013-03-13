@@ -31,7 +31,7 @@
  */
 
 /**
- * Query a DOMDocument searching for all favorites
+ * Query a DOMDocument searching for gallery and its total pages
  *
  * @category  My.Deviant API
  * @package   Base
@@ -43,18 +43,72 @@
  * @since     File available since Beta 01-02-2012
  *
  */
-class DeviantFeatured extends DeviantParser {
-    
+class Gallery extends DeviantParser {
+
     /**
-     * Query DOMDocument searching for deviations.
+     * How many page in gallery
+     * @var int
+     */
+    public $pages;
+
+    /**
+     * Each pages have got a distinct url
+     * @var array
+     */
+    public $pagesUrlList;
+
+    /**
+     * Each page's link have got same design
+     * @var string
+     */
+    protected $pagesPattern;
+
+    /**
+     * Compute total page, query DOMDocument $doc and harvest all deviations
      *
      * @param DOMDocument $doc
-     * @return void 
      */
-    public function  __construct(DOMDocument $doc) {
+    public function  __construct( DOMDocument $doc ) {
         parent::__construct($doc);
-        $this->nodeList         = $this->query( "//div[@class='gr-box gr-genericbox  gr-featured_deviation']/div[@class='gr-body']/div/div/div/span/span/a" );
+        $this->pages            = $this->totalPages();
+        $this->pagesPattern     = '?offset=';
+        $this->nodeList         = $this->query("//a[@class='thumb']");
         $this->splObjectStorage = $this->iterate( $this->nodeList, 'DeviantParser::factoryDeviation' ) ;
+        $this->pagesUrlList     = $this->buildPagesList();
+    }
+
+    /**
+     * Compute total page
+     *
+     * @param void
+     * @return int $length
+     */
+    public function totalPages() {
+        $this->nodeList = $this->query("//ul[@class='pages']/li");
+        $length         = $this->nodeList->length;
+
+        if( $length === 0 ) {
+            $length++;
+        }
+        else {
+            $length -= 2;
+        }
+
+        return $length;
+    }
+
+    /**
+     * Build every page's link from one gallery
+     * @return array $buffer
+     */
+    public function buildPagesList() {
+        $buffer     = array();
+        $offsetBase = 24;
+        for( $i = 0 ; $i !== $this->pages ; $i++ ) {
+            $buffer[$i+1] = $this->pagesPattern . $offsetBase * $i;
+        }
+        
+        return  $buffer ;
     }
 
 }
